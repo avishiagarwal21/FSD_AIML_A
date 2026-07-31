@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo fetch in js</title>
+    <style>
+        table{
+            background-color:rgb(241, 198, 226);
+            margin: auto;
+            padding:10px;
+            width:80%;
+            color:rgb(125, 32, 32);
+            border: 2px solid blueviolet;
+            font-size: 25px;
+
+        }
+        th,td{
+    border:1px solid green;
+    padding:8px;
+}
+img{
+    width:80px;
+    height:80px;
+    object-fit: contain;
+}
+    </style>
+   
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>S.no</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Rating</th>
+                <th>Stock</th>
+                <th>Images</th>
+                <th>QRCode</th>
+
+            </tr>
+        </thead>
+        <tbody id="data"></tbody>
+        </table>
+
+         <script>
+        const ele=document.getElementById("data");
+        const URL="https://dummyjson.com/products";
+        async function loadProducts(URL){
+            try{
+                const res= await fetch(URL);
+                const data=await res.json();
+                console.log("Data",data.products);
+                let row=" ";
+                data.products.map((i,index)=>{
+                   row += `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td>${i.title}</td>
+                        <td>${i.category}</td>
+                        <td>${i.price}</td>
+                        <td>${i.rating}</td>
+                        <td>${i.stock}</td>
+                        <td><img src="${i.thumbnail}" width="80"></td>
+                        <td><img src="${i.meta.qrCode}" width="80"></td>
+                    </tr>
+                    `;
+                });
+                ele.innerHTML = row;
+            }
+            catch(err){
+                console.log("Error: ",err);
+            }
+        }
+        loadProducts(URL);
+    </script>
+    
+</body>
+</html>
