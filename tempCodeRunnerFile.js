@@ -1,0 +1,1 @@
+const sum=num.reduce((i,s)=>s+i);
