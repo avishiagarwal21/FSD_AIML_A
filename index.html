@@ -3,10 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promise demo</title>
-    <script src="./promisedemo.js"></script>
+    <title>Asynchronous demo</title>
+    <script>
+        async function loaduserDetails(){
+            try{
+                const url=`https://dummyjson.com/recipes`;
+                const res = await fetch(url);
+                const data = await res.json();
+
+            const container = document.getElementById("recipes");
+
+            data.recipes.forEach(recipe => {
+                const p = document.createElement("p");
+                p.innerText = recipe.name;
+                container.appendChild(p);
+            });
+                   
+                
+            }
+            catch(err){
+                console.log("Error:",err);
+            }
+        }
+        loaduserDetails("avishiaggarwal21");
+    </script>
 </head>
 <body>
-    
-</body>
-</html>
