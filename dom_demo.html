@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom_Demo</title>
+</head>
+<body>
+
+    <h1><center>Dom Example</center></h1>
+
+    <button onclick="addPara()">Add para</button>
+
+    <div id="root"></div>
+
+    <script>
+        function addPara() {
+            const para = document.createElement("p");
+            para.innerText = "This is a new para";
+
+            const parent = document.getElementById("root");
+            parent.appendChild(para);
+        }
+    </script>
+
+</body>
+</html>
